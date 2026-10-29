@@ -15,14 +15,6 @@
 }
 
 body {
-  display: grid;
-  grid-template-areas:
-    "masthead masthead"
-    "content sidebar"
-    "footer footer";
-  grid-template-columns: minmax(0, 2fr) minmax(15rem, 1fr);
-  grid-template-rows: auto 1fr auto;
-  gap: 0 1.5rem;
   width: min(100%, 80rem);
   min-height: 100vh;
   margin: 0 auto;
@@ -33,7 +25,6 @@ body {
 }
 
 .site-header {
-  grid-area: masthead;
   min-width: 0;
 }
 
@@ -59,11 +50,21 @@ h1 {
 }
 
 nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem 0.5rem;
   padding: 0.65rem clamp(0.5rem, 3vw, 2rem);
   background: var(--ink);
+}
+
+.page-content {
+  display: grid;
+  grid-template-areas: "content sidebar";
+  grid-template-columns: minmax(0, 2fr) minmax(15rem, 1fr);
+  gap: 0 1.5rem;
 }
 
 nav a {
@@ -263,7 +264,6 @@ button {
 }
 
 .site-footer {
-  grid-area: footer;
   padding: 1rem clamp(1rem, 4vw, 3rem);
   background: var(--main);
   color: var(--ground);
@@ -274,12 +274,10 @@ button {
 }
 
 @media (max-width: 700px) {
-  body {
+  .page-content {
     grid-template-areas:
-      "masthead"
       "content"
-      "sidebar"
-      "footer";
+      "sidebar";
     grid-template-columns: minmax(0, 1fr);
     gap: 0;
   }
