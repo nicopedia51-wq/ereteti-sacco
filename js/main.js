@@ -1,8 +1,4 @@
-// =====================================================
-// js/main.js  -  DBT 1305 Lab 3
-// Linked on EVERY page with:  <script src="js/main.js" defer></script>
-// Each block runs only where its elements exist.
-// =====================================================
+
 
 const litres = document.querySelector('#litres');
 const litresMessage = document.querySelector('#litres-message');
