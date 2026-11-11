@@ -30,7 +30,7 @@ body {
 
 .brand {
   padding: 1.5rem clamp(1rem, 4vw, 3rem);
-  background: var(--main);
+  background: linear-gradient(115deg, var(--main), var(--ink));
   color: var(--ground);
 }
 
@@ -61,10 +61,13 @@ nav {
 }
 
 .page-content {
-  display: grid;
+  
   grid-template-areas: "content sidebar";
   grid-template-columns: minmax(0, 2fr) minmax(15rem, 1fr);
   gap: 0 1.5rem;
+  justify-content: center;
+  margin: auto;
+
 }
 
 nav a {
@@ -302,4 +305,21 @@ button {
   .card {
     flex-basis: 100%;
   }
+}
+.message{
+  color:red;
+  min-height: 1.5rem;
+  margin: 0.25rem 0 0.75rem;
+}input.invalid{
+  border: 2px solid ;
+}.form{
+  border: 1px block #777;
+}
+.message {
+color: #B3261E;
+min-height: 1.5em;
+margin: 0.25rem 0 0.75rem;
+}
+input.invalid {
+border: 2px solid #B3261E;
 }
