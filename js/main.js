@@ -110,11 +110,12 @@ if (search) {
 
 
 const totalCell = document.querySelector('#accepted-total');
-
+const rows = document.querySelectorAll('tbody tr');
+let total = 0;  
 if (totalCell) 
-  const rows = document.querySelectorAll('tbody tr');              
+              
 
-  let total = 0;
+  
 
   for (const row of rows) {
     const cells = row.querySelectorAll('td');                     
@@ -124,4 +125,3 @@ if (totalCell)
   }
 
   totalCell.textContent = total.toFixed(2);                       
-}
