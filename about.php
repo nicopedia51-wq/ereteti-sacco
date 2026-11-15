@@ -1,27 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About us - Ereteti Dairy Sacco</title>
-    <link rel="stylesheet" href="CSS/style.css">
-</head>
-<body>
-    <header class="site-header">
-        <div class="brand">
-            <h1>About Ereteti</h1>
-            <p>Milk collected twice a day, on three routes out of Ngong.</p>
-        </div>
-    </header>
-    <nav aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="about.html" aria-current="page">About</a>
-        <a href="routes.html">Our routes</a>
-        <a href="contact.html">Contact</a>
-        <a href="register.html">Join</a>
-        <a href="deliveries.html">Deliveries</a>
-    </nav>
-    <div class="page-content">
+<?php
+$page_title = 'About the sacco';
+include 'includes/header.php';
+?>
     <main>
         <h2>Nine farmers and one cooler</h2>
         <p>The Sacco was registered in 1998 by nine farmers who were selling to a broker at the roadside and <strong>losing most of an evening's milk</strong> whenever he did not come. They bought one cooler between them and put it at Kiserian.</p>
@@ -38,12 +18,6 @@
     <aside>
         <h2>Our purpose</h2>
         <p>We collect and cool members' milk, then pay farmers monthly for every litre accepted.</p>
-        <p><a href="routes.html">Find your collection route</a></p>
+        <p><a href="routes.php">Find your collection route</a></p>
     </aside>
-    </div>
-    <footer class="site-footer">
-        <p>Ereteti Dairy Sacco, PO Box 4021, Ngong.</p>
-        <p>Site built by Nicholas Barasa, DBIT Year 1, 2026.</p>
-    </footer>
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>

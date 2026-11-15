@@ -1,27 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our routes - Ereteti Dairy Sacco</title>
-    <link rel="stylesheet" href="CSS/style.css">
-</head>
-<body>
-    <header class="site-header">
-        <div class="brand">
-            <h1>Our routes</h1>
-            <p>Milk collected twice a day, on three routes out of Ngong.</p>
-        </div>
-    </header>
-    <nav aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="routes.html" aria-current="page">Our routes</a>
-        <a href="contact.html">Contact</a>
-        <a href="register.html">Join</a>
-        <a href="deliveries.html">Deliveries</a>
-    </nav>
-    <div class="page-content">
+<?php
+$page_title = 'Our routes';
+include 'includes/header.php';
+?>
     <main>
         <h2>Collection times and centres</h2>
         <div class="cards route-cards">
@@ -55,12 +35,6 @@
     <aside>
         <h2>Ready to join?</h2>
         <p>Membership is open to dairy farmers within reach of one of these routes.</p>
-        <p><a href="register.html">Apply for membership</a></p>
+        <p><a href="register.php">Apply for membership</a></p>
     </aside>
-    </div>
-    <footer class="site-footer">
-        <p>Ereteti Dairy Sacco, PO Box 4021, Ngong.</p>
-        <p>Site built by Nicholas Barasa, DBIT Year 1, 2026.</p>
-    </footer>
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>
