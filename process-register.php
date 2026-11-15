@@ -1,5 +1,5 @@
 <?php
-// post, because ...
+// bana this process was so fuckin somehow difficult on my side but finnaly i did it
 $page_title = 'Application received';
 include 'includes/header.php';
 
