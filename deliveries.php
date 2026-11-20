@@ -1,10 +1,20 @@
 <?php
+require_once 'includes/db.php'; // 1 · CONNECT
 $page_title = 'Deliveries';
 include 'includes/header.php';
+// 2 · QUERY — every delivery on one day, with the farmer's number and name
+$sql = "SELECT f.member_no, f.first_name, f.last_name, d.session, d.litres, d.accepted
+FROM milk_delivery d
+JOIN farmer f ON f.farmer_id = d.farmer_id
+WHERE d.delivery_date = '2026-10-12'
+ORDER BY f.member_no, d.session";
+$result = mysqli_query($conn, $sql);
+$count = mysqli_num_rows($result);
 ?>
     <main>
+        <p><?php echo $count; ?> deliveries on this day.</p>
         <h2>Milk received at Olepolos centre</h2>
-        <p>Milk received on the Kiserian route, Monday 12 October 2026. Both sessions are listed: the morning collection from 6.30am and the evening collection from 4.00pm.</p>
+        <p>Milk received on all three routes, Monday 12 October 2026. Both sessions are listed: the morning collection from 6.30am and the evening collection from 4.00pm.</p>
 
         <form class="form" id="delivery-form" action="#" method="POST">
 
@@ -41,29 +51,33 @@ include 'includes/header.php';
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>ER-0001</td><td>Peter Mwangi</td><td>Morning</td><td>5.38</td><td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>ER-0002</td><td>Peter Mwangi</td><td>Evening</td><td>4.29</td><td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>ER-0003</td><td>Grace Wanjiku</td><td>Morning</td><td>4.39</td><td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>ER-0004</td><td>Grace Wanjiku</td><td>Evening</td><td>3.02</td><td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>ER-0005</td><td>Joseph Kamau</td><td>Morning</td><td>7.73</td><td>No</td>
-                    </tr>
-                    <tr>
-                        <td>ER-0006</td><td>Joseph Kamau</td><td>Evening</td><td>6.75</td><td>Yes</td>
-                    </tr>
+<?php
+if ($count === 0) { // NEW
+    echo '<tr><td colspan="5">No deliveries recorded on this day.</td></tr>'; // NEW
+} else { // NEW
+    // 3 · FETCH each row, and 4 · SHOW it as a table row
+    while ($row = mysqli_fetch_assoc($result)) {
+        // the database stores 1 or 0; the page says Yes or No
+        if ($row['accepted'] == 1) {
+            $accepted = 'Yes';
+        } else {
+            $accepted = 'No';
+        }
+        echo '<tr>';
+        echo '<td>' . $row['member_no'] . '</td>';
+        echo '<td>' . $row['first_name'] . ' ' . $row['last_name'] . '</td>';
+        echo '<td>' . ucfirst(strtolower($row['session'])) . '</td>';
+        echo '<td>' . $row['litres'] . '</td>';
+        echo '<td>' . $accepted . '</td>';
+        echo '</tr>';
+    }
+} // NEW
+?>
                 </tbody>
                 <tfoot>
                     <tr>
                         <th colspan="4" scope="row">Accepted today</th>
-                        <td id="accepted-total">23.83</td>
+                        <td id="accepted-total"></td>
                     </tr>
                 </tfoot>
             </table>

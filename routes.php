@@ -1,40 +1,23 @@
 <?php
+require_once 'includes/db.php'; // 1 · CONNECT — loads $conn
 $page_title = 'Our routes';
 include 'includes/header.php';
+// 2 · QUERY — ask the database for every route, in order
+$sql = "SELECT route_name, collection_centre FROM route ORDER BY route_id";
+$result = mysqli_query($conn, $sql);
 ?>
-    <main>
-        <h2>Collection times and centres</h2>
-        <div class="cards route-cards">
-            <section class="card route-card" id="kiserian">
-                <h3>Kiserian route</h3>
-                <p>The lorry runs from 6.30am and again from 4.00pm.</p>
-                <ul>
-                    <li>Olepolos centre</li>
-                    <li>Kandisi centre</li>
-                </ul>
-            </section>
-            <section class="card route-card" id="ngong">
-                <h3>Ngong route</h3>
-                <p>The lorry runs from 6.00am and again from 3.30pm.</p>
-                <ul>
-                    <li>Kibiko centre</li>
-                    <li>Matasia centre</li>
-                    <li>Oloolua centre</li>
-                </ul>
-            </section>
-            <section class="card route-card" id="rongai">
-                <h3>Rongai route</h3>
-                <p>The lorry runs from 6.45am and again from 4.15pm.</p>
-                <ul>
-                    <li>Nkaimurunya centre</li>
-                    <li>Kware centre</li>
-                </ul>
-            </section>
-        </div>
-    </main>
-    <aside>
-        <h2>Ready to join?</h2>
-        <p>Membership is open to dairy farmers within reach of one of these routes.</p>
-        <p><a href="register.php">Apply for membership</a></p>
-    </aside>
+<main>
+<label for="route-search">Find a route or a centre</label>
+<input type="search" id="route-search" placeholder="e.g. Ngong">
+<p id="route-count" aria-live="polite"></p>
+<?php
+// 3 · FETCH the next row, and 4 · SHOW it — once for every row
+while ($row = mysqli_fetch_assoc($result)) {
+echo '<section>';
+echo '<h2>' . $row['route_name'] . ' route</h2>';
+echo '<p>Milk is cooled at ' . $row['collection_centre'] . '.</p>';
+echo '</section>';
+}
+?>
+</main>
 <?php include 'includes/footer.php'; ?>
